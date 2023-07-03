@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="Theme.Bookify" parent="Theme.Material3.Light" />
+
+    <style name="Theme.Bookify.NoActionBar" parent="Theme.Material3.Light.NoActionBar" />
+</resources>
