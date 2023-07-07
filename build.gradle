@@ -3,7 +3,9 @@ buildscript {
         google()
         mavenCentral()
     }
+
     dependencies {
+        classpath 'com.google.gms:google-services:4.3.15'
         def navigation_version = "2.6.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
     }

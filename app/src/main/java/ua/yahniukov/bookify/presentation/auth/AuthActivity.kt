@@ -1,4 +1,4 @@
-package ua.yahniukov.bookify.presentation.auth.screens
+package ua.yahniukov.bookify.presentation.auth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/postFragment"
+        android:title="@string/text_post"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/exploreFragment"
+        android:title="@string/text_explore"
+        android:icon="@drawable/ic_search" />
+    <item
+        android:id="@+id/addFragment"
+        android:title="@string/text_add"
+        android:icon="@drawable/ic_pen" />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/text_profile"
+        android:icon="@drawable/ic_person" />
+</menu>

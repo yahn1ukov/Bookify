@@ -15,8 +15,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/text_new_account" />
+            app:navigationIcon="@drawable/ic_arrow_back" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,10 +23,21 @@
             android:padding="16dp"
             tools:context=".presentation.auth.register.screens.RegisterFragment">
 
+            <ProgressBar
+                android:id="@+id/progress_bar_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_layout_register_first_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -35,7 +45,7 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:layout_constraintEnd_toStartOf="@id/text_input_layout_register_last_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/progress_bar_register">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_register_first_name"
