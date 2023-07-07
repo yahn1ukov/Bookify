@@ -9,18 +9,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ua.yahniukov.bookify.data.Resource
 import ua.yahniukov.bookify.data.repositories.AuthRepository
+import ua.yahniukov.bookify.data.repositories.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    userRepository: UserRepository
 ) : ViewModel() {
     private var _loginState = MutableLiveData<Resource<FirebaseUser>?>(null)
     val loginState: LiveData<Resource<FirebaseUser>?> = _loginState
 
     init {
-        if (authRepository.currentUser != null) {
-            _loginState.value = Resource.Success(authRepository.currentUser!!)
+        if (userRepository.currentUser != null) {
+            _loginState.value = Resource.Success(userRepository.currentUser!!)
         }
     }
 
