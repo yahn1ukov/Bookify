@@ -1,4 +1,4 @@
-package ua.yahniukov.bookify.presentation.home.explore.screens
+package ua.yahniukov.bookify.presentation.home.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater

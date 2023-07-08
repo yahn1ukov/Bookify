@@ -1,4 +1,4 @@
-package ua.yahniukov.bookify.presentation.home.profile.viewmodels
+package ua.yahniukov.bookify.presentation.home.profile
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

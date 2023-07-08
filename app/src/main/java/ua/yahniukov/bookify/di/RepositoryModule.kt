@@ -1,13 +1,14 @@
 package ua.yahniukov.bookify.di
 
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ua.yahniukov.bookify.data.repositories.AuthRepository
 import ua.yahniukov.bookify.data.repositories.UserRepository
-import ua.yahniukov.bookify.data.repositories.impls.AuthRepositoryImpl
-import ua.yahniukov.bookify.data.repositories.impls.UserRepositoryImpl
+import ua.yahniukov.bookify.data.repositories.impl.AuthRepositoryImpl
+import ua.yahniukov.bookify.data.repositories.impl.UserRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -16,12 +17,16 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideAuthRepository(
-        authRepositoryImpl: AuthRepositoryImpl
-    ): AuthRepository = authRepositoryImpl
+        auth: FirebaseAuth
+    ): AuthRepository {
+        return AuthRepositoryImpl(auth)
+    }
 
     @Provides
     @Singleton
     fun provideUserRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository = userRepositoryImpl
+        auth: FirebaseAuth
+    ): UserRepository {
+        return UserRepositoryImpl(auth)
+    }
 }

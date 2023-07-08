@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.profile.screens.ProfileFragment">
+        tools:context=".presentation.home.profile.ProfileFragment">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_logout"

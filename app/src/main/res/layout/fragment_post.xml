@@ -6,7 +6,7 @@
         android:id="@+id/swipe_refresh_layout_posts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.post.screens.PostFragment">
+        tools:context=".presentation.home.post.PostFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_posts_list"

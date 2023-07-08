@@ -1,20 +1,21 @@
-package ua.yahniukov.bookify.presentation.auth.register.screens
+package ua.yahniukov.bookify.presentation.auth.register
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
-import ua.yahniukov.bookify.data.Resource
 import ua.yahniukov.bookify.databinding.FragmentRegisterBinding
-import ua.yahniukov.bookify.presentation.auth.register.viewmodels.RegisterViewModel
 import ua.yahniukov.bookify.presentation.home.HomeActivity
+import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
+import ua.yahniukov.bookify.utils.hide
+import ua.yahniukov.bookify.utils.navigate
+import ua.yahniukov.bookify.utils.show
+import ua.yahniukov.bookify.utils.showToast
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -34,10 +35,12 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerViewModel.registerState.observe(viewLifecycleOwner) {
-            handleUI(it)
+        registerViewModel.registerState.observe(viewLifecycleOwner) { state ->
+            handleUIState(state)
         }
-        binding.buttonCreateAccount.setOnClickListener { register() }
+        binding.buttonCreateAccount.setOnClickListener {
+            register()
+        }
     }
 
     private fun register() {
@@ -46,7 +49,6 @@ class RegisterFragment : Fragment() {
         val email = binding.editTextRegisterEmail.text.toString()
         val password = binding.editTextRegisterPassword.text.toString()
         val confirmPassword = binding.editTextRegisterConfirmPassword.text.toString()
-
         if (
             validateHelper.validateFirstName(firstName) &&
             validateHelper.validateLastName(lastName) &&
@@ -59,35 +61,30 @@ class RegisterFragment : Fragment() {
     }
 
     private fun showLoading() {
-        binding.toolbarRegister.visibility = View.VISIBLE
+        binding.textNewAccount.hide()
+        binding.progressBarRegister.show()
     }
 
     private fun hideLoading() {
-        binding.toolbarRegister.visibility = View.INVISIBLE
+        binding.progressBarRegister.hide()
+        binding.textNewAccount.show()
     }
 
-    private fun handleUI(state: Resource<FirebaseUser>?) {
+    private fun handleUIState(state: Result<FirebaseUser>) {
         when (state) {
-            is Resource.Success -> {
+            is Result.Success -> {
                 hideLoading()
-                val intent = Intent(requireActivity(), HomeActivity::class.java)
-                requireActivity().startActivity(intent)
+                navigate(requireActivity(), HomeActivity::class.java)
             }
 
-            is Resource.Failure -> {
+            is Result.Failure -> {
                 hideLoading()
-                Toast.makeText(
-                    requireContext(),
-                    state.exception.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(state.exception.message.toString())
             }
 
-            Resource.Loading -> {
+            Result.Loading -> {
                 showLoading()
             }
-
-            else -> {}
         }
     }
 

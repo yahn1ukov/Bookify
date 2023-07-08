@@ -1,22 +1,23 @@
-package ua.yahniukov.bookify.presentation.auth.login.screens
+package ua.yahniukov.bookify.presentation.auth.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
-import ua.yahniukov.bookify.data.Resource
 import ua.yahniukov.bookify.databinding.FragmentLoginBinding
-import ua.yahniukov.bookify.presentation.auth.login.viewmodels.LoginViewModel
 import ua.yahniukov.bookify.presentation.home.HomeActivity
+import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
+import ua.yahniukov.bookify.utils.hide
+import ua.yahniukov.bookify.utils.navigate
+import ua.yahniukov.bookify.utils.show
+import ua.yahniukov.bookify.utils.showToast
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -36,10 +37,15 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel.loginState.observe(viewLifecycleOwner) {
-            handleUI(it)
+        loginViewModel.loginState.observe(viewLifecycleOwner) { state ->
+            handleUIState(state)
         }
-        binding.buttonLogIn.setOnClickListener { login() }
+        binding.buttonLogIn.setOnClickListener {
+            login()
+        }
+        binding.textForgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
+        }
         binding.buttonNewAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
@@ -48,41 +54,34 @@ class LoginFragment : Fragment() {
     private fun login() {
         val email = binding.editTextLoginEmail.text.toString()
         val password = binding.editTextLoginPassword.text.toString()
-
         if (validateHelper.validateEmail(email) && validateHelper.validatePassword(password)) {
             loginViewModel.login(email, password)
         }
     }
 
     private fun showLoading() {
-        binding.textLogo.visibility = View.INVISIBLE
-        binding.progressBarLogin.visibility = View.VISIBLE
+        binding.textLogo.hide()
+        binding.progressBarLogin.show()
     }
 
     private fun hideLoading() {
-        binding.textLogo.visibility = View.VISIBLE
-        binding.progressBarLogin.visibility = View.INVISIBLE
+        binding.progressBarLogin.hide()
+        binding.textLogo.show()
     }
 
-    private fun handleUI(state: Resource<FirebaseUser>?) {
+    private fun handleUIState(state: Result<FirebaseUser>?) {
         when (state) {
-            is Resource.Success -> {
+            is Result.Success -> {
                 hideLoading()
-                val intent = Intent(requireActivity(), HomeActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                requireActivity().startActivity(intent)
+                navigate(requireActivity(), HomeActivity::class.java)
             }
 
-            is Resource.Failure -> {
+            is Result.Failure -> {
                 hideLoading()
-                Toast.makeText(
-                    requireContext(),
-                    state.exception.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(state.exception.message.toString())
             }
 
-            Resource.Loading -> {
+            Result.Loading -> {
                 showLoading()
             }
 

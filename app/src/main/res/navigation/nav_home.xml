@@ -8,22 +8,22 @@
 
     <fragment
         android:id="@+id/postFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.post.screens.PostFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.post.PostFragment"
         android:label="@string/text_post"
         tools:layout="@layout/fragment_post" />
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.explore.screens.ExploreFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.explore.ExploreFragment"
         android:label="@string/text_explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/addFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.add.screens.AddFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.add.AddFragment"
         android:label="@string/text_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.profile.screens.ProfileFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.profile.ProfileFragment"
         android:label="@string/text_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

@@ -1,6 +1,5 @@
-package ua.yahniukov.bookify.presentation.home.profile.screens
+package ua.yahniukov.bookify.presentation.home.profile
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -17,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentProfileBinding
 import ua.yahniukov.bookify.presentation.auth.AuthActivity
-import ua.yahniukov.bookify.presentation.home.profile.viewmodels.ProfileViewModel
+import ua.yahniukov.bookify.utils.navigate
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -39,9 +38,7 @@ class ProfileFragment : Fragment() {
         setupToolbarMenu()
         binding.buttonLogout.setOnClickListener {
             profileViewModel.logout()
-            val intent = Intent(requireActivity(), AuthActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            requireActivity().startActivity(intent)
+            navigate(requireActivity(), AuthActivity::class.java)
         }
     }
 
