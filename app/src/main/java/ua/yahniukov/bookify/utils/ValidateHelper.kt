@@ -3,7 +3,9 @@ package ua.yahniukov.bookify.utils
 import android.content.Context
 import android.util.Patterns
 import android.widget.Toast
+import javax.inject.Singleton
 
+@Singleton
 class ValidateHelper(private val context: Context) {
     fun validateFirstName(firstName: String): Boolean {
         return if (firstName.isEmpty()) {

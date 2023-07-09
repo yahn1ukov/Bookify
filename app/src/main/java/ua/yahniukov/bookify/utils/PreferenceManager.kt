@@ -14,9 +14,11 @@ import ua.yahniukov.bookify.utils.Constants.PREFERENCE_KEY_THEME_MODE
 import ua.yahniukov.bookify.utils.Constants.THEME_MODE_DEFAULT
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
 private val Context.datastore by preferencesDataStore(DATA_STORE_NAME)
 
+@Singleton
 class PreferenceManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {

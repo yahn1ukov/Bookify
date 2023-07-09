@@ -10,7 +10,7 @@ import ua.yahniukov.bookify.utils.Constants.THEME_MODE_DEFAULT
 class Bookify : Application() {
     override fun onCreate() {
         super.onCreate()
-        DynamicColors.applyToActivitiesIfAvailable(this@Bookify)
+        DynamicColors.applyToActivitiesIfAvailable(this)
         AppCompatDelegate.setDefaultNightMode(THEME_MODE_DEFAULT)
     }
 }
