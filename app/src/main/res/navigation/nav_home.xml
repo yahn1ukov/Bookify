@@ -3,19 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home"
-    android:label="@string/text_post"
-    app:startDestination="@id/postFragment">
+    app:startDestination="@id/bookFragment">
 
     <fragment
-        android:id="@+id/postFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.post.PostFragment"
-        android:label="@string/text_post"
-        tools:layout="@layout/fragment_post" />
-    <fragment
-        android:id="@+id/exploreFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.explore.ExploreFragment"
-        android:label="@string/text_explore"
-        tools:layout="@layout/fragment_explore" />
+        android:id="@+id/bookFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.book.BookFragment"
+        android:label="@string/text_books"
+        tools:layout="@layout/fragment_book" />
     <fragment
         android:id="@+id/addFragment"
         android:name="ua.yahniukov.bookify.presentation.home.add.AddFragment"
@@ -25,5 +19,20 @@
         android:id="@+id/profileFragment"
         android:name="ua.yahniukov.bookify.presentation.home.profile.ProfileFragment"
         android:label="@string/text_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_bottomSheetDialogSettingsFragment"
+            app:destination="@id/bottomSheetDialogSettingsFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetDialogSettingsFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.settings.SettingsBottomSheetDialogFragment"
+        android:label="fragment_bottom_sheet_dialog_settings"
+        tools:layout="@layout/fragment_settings_bottom_sheet_dialog">
+        <action
+            android:id="@+id/action_bottomSheetDialogSettingsFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
 </navigation>

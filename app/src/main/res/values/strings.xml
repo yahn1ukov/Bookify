@@ -6,16 +6,16 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm password</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_author">Author</string>
+    <string name="hint_description">Description</string>
 
     <string name="text_log_in">Log in</string>
     <string name="text_create_new_account">Create new account</string>
     <string name="text_forgot_password">Forgot password?</string>
     <string name="text_or">or</string>
     <string name="text_google">Google</string>
-    <string name="text_facebook">Facebook</string>
     <string name="text_create">Create</string>
-    <string name="text_post">Posts</string>
-    <string name="text_explore">Explore</string>
     <string name="text_profile">Profile</string>
     <string name="text_add">Add</string>
     <string name="text_filter">Filter</string>
@@ -24,4 +24,6 @@
     <string name="text_new_account">New Account</string>
     <string name="text_reset_password">Reset Password</string>
     <string name="text_reset">Reset</string>
+    <string name="text_log_out">Log out</string>
+    <string name="text_books">Books</string>
 </resources>

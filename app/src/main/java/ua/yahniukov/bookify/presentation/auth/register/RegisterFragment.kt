@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.databinding.FragmentRegisterBinding
+import ua.yahniukov.bookify.dto.auth.RegisterRequest
 import ua.yahniukov.bookify.presentation.home.HomeActivity
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
@@ -36,12 +36,10 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerViewModel.registerState.observe(viewLifecycleOwner) { state ->
+        registerViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
         }
-        binding.buttonCreateAccount.setOnClickListener {
-            register()
-        }
+        binding.buttonCreateAccount.setOnClickListener { register() }
     }
 
     private fun register() {
@@ -57,7 +55,8 @@ class RegisterFragment : Fragment() {
             validateHelper.validatePassword(password) &&
             validateHelper.validateConfirmPassword(password, confirmPassword)
         ) {
-            registerViewModel.register(firstName, lastName, email, password)
+            val registerRequest = RegisterRequest(firstName, lastName, email, password)
+            registerViewModel.register(registerRequest)
         }
     }
 
@@ -71,14 +70,14 @@ class RegisterFragment : Fragment() {
         binding.textNewAccount.show()
     }
 
-    private fun handleUIState(state: Result<FirebaseUser>) {
+    private fun handleUIState(state: Result<Nothing>) {
         when (state) {
             is Result.Success -> {
                 hideLoading()
                 navigate(requireActivity(), HomeActivity::class.java)
             }
 
-            is Result.Failure -> {
+            is Result.Error -> {
                 hideLoading()
                 showToast(state.exception.message.toString())
             }

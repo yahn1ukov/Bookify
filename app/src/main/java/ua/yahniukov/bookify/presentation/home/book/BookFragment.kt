@@ -1,4 +1,4 @@
-package ua.yahniukov.bookify.presentation.home.post
+package ua.yahniukov.bookify.presentation.home.book
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,18 +13,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
-import ua.yahniukov.bookify.databinding.FragmentPostBinding
+import ua.yahniukov.bookify.databinding.FragmentBookBinding
 
 @AndroidEntryPoint
-class PostFragment : Fragment() {
-    private var _binding: FragmentPostBinding? = null
+class BookFragment : Fragment() {
+    private var _binding: FragmentBookBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPostBinding.inflate(inflater, container, false)
+        _binding = FragmentBookBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -38,7 +38,7 @@ class PostFragment : Fragment() {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.toolbar_menu_home, menu)
+                menuInflater.inflate(R.menu.toolbar_menu_book, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

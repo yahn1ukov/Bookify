@@ -48,7 +48,15 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    def firebase_auth_version = "22.0.0"
+    implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth_version"
+
+    def firebase_storage_version = "20.2.1"
+    implementation "com.google.firebase:firebase-storage-ktx:$firebase_storage_version"
+
+    def firebase_database_version = "20.2.2"
+    implementation "com.google.firebase:firebase-database-ktx:$firebase_database_version"
+    
     def navigation_version = "2.6.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"

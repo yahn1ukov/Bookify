@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/postFragment"
-        android:title="@string/text_post"
-        android:icon="@drawable/ic_home" />
-    <item
-        android:id="@+id/exploreFragment"
-        android:title="@string/text_explore"
-        android:icon="@drawable/ic_search" />
+        android:id="@+id/bookFragment"
+        android:icon="@drawable/ic_book"
+        android:title="@string/text_books" />
     <item
         android:id="@+id/addFragment"
-        android:title="@string/text_add"
-        android:icon="@drawable/ic_pen" />
+        android:icon="@drawable/ic_add"
+        android:title="@string/text_add" />
     <item
         android:id="@+id/profileFragment"
-        android:title="@string/text_profile"
-        android:icon="@drawable/ic_person" />
+        android:icon="@drawable/ic_person"
+        android:title="@string/text_profile" />
 </menu>

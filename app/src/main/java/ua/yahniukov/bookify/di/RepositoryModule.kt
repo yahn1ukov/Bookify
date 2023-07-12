@@ -1,13 +1,17 @@
 package ua.yahniukov.bookify.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ua.yahniukov.bookify.data.repositories.AuthRepository
+import ua.yahniukov.bookify.data.repositories.BookRepository
 import ua.yahniukov.bookify.data.repositories.UserRepository
 import ua.yahniukov.bookify.data.repositories.impl.AuthRepositoryImpl
+import ua.yahniukov.bookify.data.repositories.impl.BookRepositoryImpl
 import ua.yahniukov.bookify.data.repositories.impl.UserRepositoryImpl
 
 @Module
@@ -25,5 +29,14 @@ object RepositoryModule {
         auth: FirebaseAuth
     ): UserRepository {
         return UserRepositoryImpl(auth)
+    }
+
+    @Provides
+    fun provideBookRepository(
+        userRepository: UserRepository,
+        db: FirebaseDatabase,
+        storage: FirebaseStorage
+    ): BookRepository {
+        return BookRepositoryImpl(userRepository, db, storage)
     }
 }

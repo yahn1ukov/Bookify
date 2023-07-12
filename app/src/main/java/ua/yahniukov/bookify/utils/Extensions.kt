@@ -8,23 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.google.android.gms.tasks.Task
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resumeWithException
-
-@OptIn(ExperimentalCoroutinesApi::class)
-suspend fun <T> Task<T>.await(): T {
-    return suspendCancellableCoroutine { continuation ->
-        addOnCompleteListener {
-            if (it.exception != null) {
-                continuation.resumeWithException(it.exception!!)
-            } else {
-                continuation.resume(it.result, null)
-            }
-        }
-    }
-}
 
 fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
     observe(lifecycleOwner, object : Observer<T> {

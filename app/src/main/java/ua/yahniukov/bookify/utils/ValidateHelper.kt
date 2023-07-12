@@ -1,6 +1,7 @@
 package ua.yahniukov.bookify.utils
 
 import android.content.Context
+import android.net.Uri
 import android.util.Patterns
 import android.widget.Toast
 import javax.inject.Singleton
@@ -58,6 +59,33 @@ class ValidateHelper(private val context: Context) {
             false
         } else if (password != confirmPassword) {
             Toast.makeText(context, "Passwords don't match", Toast.LENGTH_SHORT).show()
+            false
+        } else {
+            true
+        }
+    }
+
+    fun validateBookImage(image: Uri?): Boolean {
+        return if (image == null) {
+            Toast.makeText(context, "Please select image of a book", Toast.LENGTH_SHORT).show()
+            false
+        } else {
+            true
+        }
+    }
+
+    fun validateBookName(bookName: String): Boolean {
+        return if (bookName.isEmpty()) {
+            Toast.makeText(context, "Please enter book name", Toast.LENGTH_SHORT).show()
+            false
+        } else {
+            true
+        }
+    }
+
+    fun validateBookAuthor(author: String): Boolean {
+        return if (author.isEmpty()) {
+            Toast.makeText(context, "Please enter author", Toast.LENGTH_SHORT).show()
             false
         } else {
             true

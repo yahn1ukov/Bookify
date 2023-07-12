@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentResetPasswordBinding
+import ua.yahniukov.bookify.dto.auth.ResetPasswordRequest
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
 import ua.yahniukov.bookify.utils.hide
@@ -35,18 +36,17 @@ class ResetPasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        resetPasswordViewModel.resetPasswordState.observe(viewLifecycleOwner) { state ->
+        resetPasswordViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
         }
-        binding.buttonResetPassword.setOnClickListener {
-            resetPassword()
-        }
+        binding.buttonResetPassword.setOnClickListener { resetPassword() }
     }
 
     private fun resetPassword() {
         val email = binding.editTextResetPasswordEmail.text.toString()
         if (validateHelper.validateEmail(email)) {
-            resetPasswordViewModel.resetPassword(email)
+            val resetPasswordRequest = ResetPasswordRequest(email)
+            resetPasswordViewModel.resetPassword(resetPasswordRequest)
         }
     }
 
@@ -67,7 +67,7 @@ class ResetPasswordFragment : Fragment() {
                 findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
             }
 
-            is Result.Failure -> {
+            is Result.Error -> {
                 hideLoading()
                 showToast(state.exception.message.toString())
             }

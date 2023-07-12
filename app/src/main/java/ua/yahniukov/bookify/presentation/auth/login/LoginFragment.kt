@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentLoginBinding
+import ua.yahniukov.bookify.dto.auth.LoginRequest
 import ua.yahniukov.bookify.presentation.home.HomeActivity
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
@@ -38,12 +38,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel.loginState.observe(viewLifecycleOwner) { state ->
+        loginViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
         }
-        binding.buttonLogIn.setOnClickListener {
-            login()
-        }
+        binding.buttonLogIn.setOnClickListener { login() }
         binding.textForgotPassword.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
         }
@@ -56,7 +54,8 @@ class LoginFragment : Fragment() {
         val email = binding.editTextLoginEmail.text.toString()
         val password = binding.editTextLoginPassword.text.toString()
         if (validateHelper.validateEmail(email) && validateHelper.validatePassword(password)) {
-            loginViewModel.login(email, password)
+            val loginRequest = LoginRequest(email, password)
+            loginViewModel.login(loginRequest)
         }
     }
 
@@ -70,14 +69,14 @@ class LoginFragment : Fragment() {
         binding.textLogo.show()
     }
 
-    private fun handleUIState(state: Result<FirebaseUser>?) {
+    private fun handleUIState(state: Result<Nothing>) {
         when (state) {
             is Result.Success -> {
                 hideLoading()
                 navigate(requireActivity(), HomeActivity::class.java)
             }
 
-            is Result.Failure -> {
+            is Result.Error -> {
                 hideLoading()
                 showToast(state.exception.message.toString())
             }
@@ -85,8 +84,6 @@ class LoginFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
-
-            else -> {}
         }
     }
 
