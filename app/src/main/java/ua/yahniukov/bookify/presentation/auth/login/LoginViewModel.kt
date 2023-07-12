@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ua.yahniukov.bookify.data.repositories.AuthRepository
 import ua.yahniukov.bookify.data.repositories.UserRepository
-import ua.yahniukov.bookify.dto.auth.LoginRequest
 import ua.yahniukov.bookify.utils.Result
 import javax.inject.Inject
 
@@ -26,10 +25,10 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun login(loginRequest: LoginRequest) {
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             _uiState.value = Result.Loading
-            _uiState.value = authRepository.login(loginRequest)
+            _uiState.value = authRepository.login(email, password)
         }
     }
 }

@@ -14,7 +14,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/image_post_item_book_thumbnail"
+                android:id="@+id/image_book_item_thumbnail"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_post_item_name"
+                android:id="@+id/text_book_item_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -33,12 +33,12 @@
                 android:text="Harry Potter"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/image_post_item_book_thumbnail"
-                app:layout_constraintStart_toStartOf="@+id/image_post_item_book_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/image_post_item_book_thumbnail" />
+                app:layout_constraintEnd_toEndOf="@+id/image_book_item_thumbnail"
+                app:layout_constraintStart_toStartOf="@+id/image_book_item_thumbnail"
+                app:layout_constraintTop_toBottomOf="@+id/image_book_item_thumbnail" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_post_item_author"
+                android:id="@+id/text_book_item_author"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -47,9 +47,9 @@
                 android:lines="1"
                 android:text="J.K. Rowling"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="@+id/text_post_item_name"
-                app:layout_constraintStart_toStartOf="@+id/text_post_item_name"
-                app:layout_constraintTop_toBottomOf="@+id/text_post_item_name" />
+                app:layout_constraintEnd_toEndOf="@+id/text_book_item_name"
+                app:layout_constraintStart_toStartOf="@+id/text_book_item_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_book_item_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

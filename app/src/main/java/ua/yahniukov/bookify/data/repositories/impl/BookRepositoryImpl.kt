@@ -1,12 +1,12 @@
 package ua.yahniukov.bookify.data.repositories.impl
 
+import android.net.Uri
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import ua.yahniukov.bookify.data.models.entities.Book
 import ua.yahniukov.bookify.data.repositories.BookRepository
 import ua.yahniukov.bookify.data.repositories.UserRepository
-import ua.yahniukov.bookify.dto.home.BookRequest
 import ua.yahniukov.bookify.utils.Result
 import java.util.UUID
 import javax.inject.Inject
@@ -18,9 +18,13 @@ class BookRepositoryImpl @Inject constructor(
     private val db: FirebaseDatabase,
     private val storage: FirebaseStorage
 ) : BookRepository {
-    override suspend fun create(bookRequest: BookRequest): Result<Nothing> {
+    override suspend fun create(
+        image: Uri,
+        name: String,
+        author: String,
+        description: String
+    ): Result<Nothing> {
         return try {
-            val (image, name, author, description) = bookRequest
             val storageRef = storage.reference
             val imageName = UUID.randomUUID().toString()
             val imagePath = storageRef.child(imageName)

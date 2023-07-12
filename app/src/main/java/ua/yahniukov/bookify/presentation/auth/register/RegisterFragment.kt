@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.databinding.FragmentRegisterBinding
-import ua.yahniukov.bookify.dto.auth.RegisterRequest
 import ua.yahniukov.bookify.presentation.home.HomeActivity
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
@@ -55,8 +54,7 @@ class RegisterFragment : Fragment() {
             validateHelper.validatePassword(password) &&
             validateHelper.validateConfirmPassword(password, confirmPassword)
         ) {
-            val registerRequest = RegisterRequest(firstName, lastName, email, password)
-            registerViewModel.register(registerRequest)
+            registerViewModel.register(firstName, lastName, email, password)
         }
     }
 

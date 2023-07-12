@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentLoginBinding
-import ua.yahniukov.bookify.dto.auth.LoginRequest
 import ua.yahniukov.bookify.presentation.home.HomeActivity
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
@@ -54,8 +53,7 @@ class LoginFragment : Fragment() {
         val email = binding.editTextLoginEmail.text.toString()
         val password = binding.editTextLoginPassword.text.toString()
         if (validateHelper.validateEmail(email) && validateHelper.validatePassword(password)) {
-            val loginRequest = LoginRequest(email, password)
-            loginViewModel.login(loginRequest)
+            loginViewModel.login(email, password)
         }
     }
 

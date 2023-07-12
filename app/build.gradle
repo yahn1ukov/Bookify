@@ -48,6 +48,9 @@ android {
 }
 
 dependencies {
+    def circle_image_view_version = "3.1.0"
+    implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
+
     def firebase_auth_version = "22.0.0"
     implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth_version"
 
@@ -56,7 +59,7 @@ dependencies {
 
     def firebase_database_version = "20.2.2"
     implementation "com.google.firebase:firebase-database-ktx:$firebase_database_version"
-    
+
     def navigation_version = "2.6.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"

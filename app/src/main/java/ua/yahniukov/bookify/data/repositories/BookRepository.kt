@@ -1,8 +1,13 @@
 package ua.yahniukov.bookify.data.repositories
 
-import ua.yahniukov.bookify.dto.home.BookRequest
+import android.net.Uri
 import ua.yahniukov.bookify.utils.Result
 
 interface BookRepository {
-    suspend fun create(bookRequest: BookRequest): Result<Nothing>
+    suspend fun create(
+        image: Uri,
+        name: String,
+        author: String,
+        description: String = ""
+    ): Result<Nothing>
 }

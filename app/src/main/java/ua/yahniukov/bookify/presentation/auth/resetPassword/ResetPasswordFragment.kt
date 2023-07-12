@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentResetPasswordBinding
-import ua.yahniukov.bookify.dto.auth.ResetPasswordRequest
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
 import ua.yahniukov.bookify.utils.hide
@@ -45,8 +44,7 @@ class ResetPasswordFragment : Fragment() {
     private fun resetPassword() {
         val email = binding.editTextResetPasswordEmail.text.toString()
         if (validateHelper.validateEmail(email)) {
-            val resetPasswordRequest = ResetPasswordRequest(email)
-            resetPasswordViewModel.resetPassword(resetPasswordRequest)
+            resetPasswordViewModel.resetPassword(email)
         }
     }
 

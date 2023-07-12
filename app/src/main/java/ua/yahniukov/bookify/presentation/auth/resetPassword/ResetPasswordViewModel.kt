@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ua.yahniukov.bookify.data.repositories.AuthRepository
-import ua.yahniukov.bookify.dto.auth.ResetPasswordRequest
 import ua.yahniukov.bookify.utils.Result
 import javax.inject.Inject
 
@@ -18,10 +17,10 @@ class ResetPasswordViewModel @Inject constructor(
     private var _uiState = MutableLiveData<Result<Nothing>>()
     val uiState: LiveData<Result<Nothing>> = _uiState
 
-    fun resetPassword(resetPasswordRequest: ResetPasswordRequest) {
+    fun resetPassword(email: String) {
         viewModelScope.launch {
             _uiState.value = Result.Loading
-            _uiState.value = authRepository.resetPassword(resetPasswordRequest)
+            _uiState.value = authRepository.resetPassword(email)
         }
     }
 }

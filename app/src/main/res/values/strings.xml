@@ -26,4 +26,6 @@
     <string name="text_reset">Reset</string>
     <string name="text_log_out">Log out</string>
     <string name="text_books">Books</string>
+    <string name="text_name">Name</string>
+    <string name="text_email">Email</string>
 </resources>

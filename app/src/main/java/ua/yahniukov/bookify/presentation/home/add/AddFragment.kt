@@ -18,7 +18,6 @@ import androidx.lifecycle.Lifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentAddBinding
-import ua.yahniukov.bookify.dto.home.BookRequest
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.ValidateHelper
 import ua.yahniukov.bookify.utils.hide
@@ -96,8 +95,7 @@ class AddFragment : Fragment() {
             validateHelper.validateBookName(name) &&
             validateHelper.validateBookAuthor(author)
         ) {
-            val bookRequest = BookRequest(tempImage!!, name, author, description)
-            addViewModel.create(bookRequest)
+            addViewModel.create(tempImage!!, name, author, description)
         }
     }
 

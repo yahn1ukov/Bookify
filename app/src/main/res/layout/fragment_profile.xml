@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="currentUser"
+            type="com.google.firebase.auth.FirebaseUser" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="16dp"
         tools:context=".presentation.home.profile.ProfileFragment">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_profile_photo"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:loadProfileImage="@{currentUser.photoUrl}"
+            android:src="@drawable/ic_person"
+            app:civ_border_color="?attr/colorPrimary"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/text_name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/image_profile_photo"
+            app:layout_constraintTop_toTopOf="@+id/image_profile_photo" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_profile_display_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{currentUser.displayName}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_profile_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_email"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_display_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_profile_display_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_profile_display_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{currentUser.email}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/text_profile_email"
+            app:layout_constraintTop_toBottomOf="@+id/text_profile_email" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
