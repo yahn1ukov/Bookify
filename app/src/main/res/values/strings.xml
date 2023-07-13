@@ -28,4 +28,6 @@
     <string name="text_books">Books</string>
     <string name="text_name">Name</string>
     <string name="text_email">Email</string>
+    <string name="text_author">Author</string>
+    <string name="text_description">Description</string>
 </resources>

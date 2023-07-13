@@ -41,23 +41,6 @@ class ResetPasswordFragment : Fragment() {
         binding.buttonResetPassword.setOnClickListener { resetPassword() }
     }
 
-    private fun resetPassword() {
-        val email = binding.editTextResetPasswordEmail.text.toString()
-        if (validateHelper.validateEmail(email)) {
-            resetPasswordViewModel.resetPassword(email)
-        }
-    }
-
-    private fun showLoading() {
-        binding.textForgotPassword.hide()
-        binding.progressBarResetPassword.show()
-    }
-
-    private fun hideLoading() {
-        binding.progressBarResetPassword.hide()
-        binding.textForgotPassword.show()
-    }
-
     private fun handleUIState(state: Result<Nothing>) {
         when (state) {
             is Result.Success -> {
@@ -73,6 +56,23 @@ class ResetPasswordFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
+        }
+    }
+
+    private fun showLoading() {
+        binding.textForgotPassword.hide()
+        binding.progressBarResetPassword.show()
+    }
+
+    private fun hideLoading() {
+        binding.progressBarResetPassword.hide()
+        binding.textForgotPassword.show()
+    }
+
+    private fun resetPassword() {
+        val email = binding.editTextResetPasswordEmail.text.toString()
+        if (validateHelper.validateEmail(email)) {
+            resetPasswordViewModel.resetPassword(email)
         }
     }
 

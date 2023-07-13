@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.bookFragment,
+                R.id.bookListFragment,
                 R.id.addFragment,
                 R.id.profileFragment
             )

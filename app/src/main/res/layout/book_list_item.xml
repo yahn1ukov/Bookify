@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="book"
+            type="ua.yahniukov.bookify.data.models.entities.Book" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +24,7 @@
                 android:id="@+id/image_book_item_thumbnail"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:loadImage="@{book.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +38,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Harry Potter"
+                android:text="@{book.name}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/image_book_item_thumbnail"
@@ -45,7 +53,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
-                android:text="J.K. Rowling"
+                android:text="@{book.author}"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/text_book_item_name"
                 app:layout_constraintStart_toStartOf="@+id/text_book_item_name"

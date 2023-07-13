@@ -81,21 +81,22 @@ class AddFragment : Fragment() {
             }
     }
 
-    private fun uploadImage() {
-        imagePickerLauncher.launch("image/**")
-    }
+    private fun handleUIState(state: Result<Nothing>) {
+        when (state) {
+            is Result.Success -> {
+                hideLoading()
+                resetForm()
+                showToast("Post has been successfully created")
+            }
 
-    private fun create() {
-        val name = binding.editTextAddName.text.toString()
-        val author = binding.editTextAddAuthor.text.toString()
-        val description = binding.editTextAddDescription.text.toString()
+            is Result.Error -> {
+                hideLoading()
+                showToast(state.exception.message.toString())
+            }
 
-        if (
-            validateHelper.validateBookImage(tempImage) &&
-            validateHelper.validateBookName(name) &&
-            validateHelper.validateBookAuthor(author)
-        ) {
-            addViewModel.create(tempImage!!, name, author, description)
+            Result.Loading -> {
+                showLoading()
+            }
         }
     }
 
@@ -114,22 +115,21 @@ class AddFragment : Fragment() {
         binding.editTextAddDescription.setText("")
     }
 
-    private fun handleUIState(state: Result<Nothing>) {
-        when (state) {
-            is Result.Success -> {
-                hideLoading()
-                resetForm()
-                showToast("Post has been successfully created")
-            }
+    private fun uploadImage() {
+        imagePickerLauncher.launch("image/**")
+    }
 
-            is Result.Error -> {
-                hideLoading()
-                showToast(state.exception.message.toString())
-            }
+    private fun create() {
+        val name = binding.editTextAddName.text.toString()
+        val author = binding.editTextAddAuthor.text.toString()
+        val description = binding.editTextAddDescription.text.toString()
 
-            Result.Loading -> {
-                showLoading()
-            }
+        if (
+            validateHelper.validateBookImage(tempImage) &&
+            validateHelper.validateBookName(name) &&
+            validateHelper.validateBookAuthor(author)
+        ) {
+            addViewModel.create(tempImage!!, name, author, description)
         }
     }
 

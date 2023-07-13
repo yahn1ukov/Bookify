@@ -48,9 +48,6 @@ android {
 }
 
 dependencies {
-    def circle_image_view_version = "3.1.0"
-    implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
-
     def firebase_auth_version = "22.0.0"
     implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth_version"
 

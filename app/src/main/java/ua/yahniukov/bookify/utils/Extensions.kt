@@ -5,17 +5,15 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import com.google.firebase.database.DataSnapshot
 
-fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
-    observe(lifecycleOwner, object : Observer<T> {
-        override fun onChanged(value: T) {
-            removeObserver(this)
-            observer.onChanged(value)
-        }
-    })
+inline fun <reified T> Iterable<DataSnapshot>.toList(): List<T> {
+    val list = mutableListOf<T>()
+    for (snapshot in this) {
+        val value = snapshot.getValue(T::class.java)
+        value?.let { list.add(it) }
+    }
+    return list
 }
 
 fun View.show() {

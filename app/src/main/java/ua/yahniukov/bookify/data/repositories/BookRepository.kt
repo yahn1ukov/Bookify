@@ -1,6 +1,7 @@
 package ua.yahniukov.bookify.data.repositories
 
 import android.net.Uri
+import ua.yahniukov.bookify.data.models.entities.Book
 import ua.yahniukov.bookify.utils.Result
 
 interface BookRepository {
@@ -10,4 +11,6 @@ interface BookRepository {
         author: String,
         description: String = ""
     ): Result<Nothing>
+
+    suspend fun getAll(): Result<List<Book>>
 }

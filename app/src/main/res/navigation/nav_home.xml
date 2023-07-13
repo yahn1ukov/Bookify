@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home"
-    app:startDestination="@id/bookFragment">
+    app:startDestination="@id/bookListFragment">
 
     <fragment
-        android:id="@+id/bookFragment"
-        android:name="ua.yahniukov.bookify.presentation.home.book.BookFragment"
+        android:id="@+id/bookListFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.listBook.BookListFragment"
         android:label="@string/text_books"
-        tools:layout="@layout/fragment_book" />
+        tools:layout="@layout/fragment_book_list">
+        <action
+            android:id="@+id/action_bookListFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="ua.yahniukov.bookify.presentation.home.add.AddFragment"
@@ -35,4 +39,18 @@
             app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true" />
     </dialog>
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="ua.yahniukov.bookify.presentation.home.book.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book">
+        <action
+            android:id="@+id/action_bookFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="book"
+            app:argType="ua.yahniukov.bookify.data.models.entities.Book" />
+    </fragment>
 </navigation>

@@ -29,10 +29,12 @@ class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonLogOut.setOnClickListener {
-            settingsViewModel.logout()
-            navigate(requireActivity(), AuthActivity::class.java)
-        }
+        binding.buttonLogOut.setOnClickListener { logOut() }
+    }
+    
+    private fun logOut() {
+        settingsViewModel.logout()
+        navigate(requireActivity(), AuthActivity::class.java)
     }
 
     override fun onDestroyView() {

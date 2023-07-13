@@ -41,33 +41,6 @@ class RegisterFragment : Fragment() {
         binding.buttonCreateAccount.setOnClickListener { register() }
     }
 
-    private fun register() {
-        val firstName = binding.editTextRegisterFirstName.text.toString()
-        val lastName = binding.editTextRegisterLastName.text.toString()
-        val email = binding.editTextRegisterEmail.text.toString()
-        val password = binding.editTextRegisterPassword.text.toString()
-        val confirmPassword = binding.editTextRegisterConfirmPassword.text.toString()
-        if (
-            validateHelper.validateFirstName(firstName) &&
-            validateHelper.validateLastName(lastName) &&
-            validateHelper.validateEmail(email) &&
-            validateHelper.validatePassword(password) &&
-            validateHelper.validateConfirmPassword(password, confirmPassword)
-        ) {
-            registerViewModel.register(firstName, lastName, email, password)
-        }
-    }
-
-    private fun showLoading() {
-        binding.textNewAccount.hide()
-        binding.progressBarRegister.show()
-    }
-
-    private fun hideLoading() {
-        binding.progressBarRegister.hide()
-        binding.textNewAccount.show()
-    }
-
     private fun handleUIState(state: Result<Nothing>) {
         when (state) {
             is Result.Success -> {
@@ -83,6 +56,33 @@ class RegisterFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
+        }
+    }
+
+    private fun showLoading() {
+        binding.textNewAccount.hide()
+        binding.progressBarRegister.show()
+    }
+
+    private fun hideLoading() {
+        binding.progressBarRegister.hide()
+        binding.textNewAccount.show()
+    }
+
+    private fun register() {
+        val firstName = binding.editTextRegisterFirstName.text.toString()
+        val lastName = binding.editTextRegisterLastName.text.toString()
+        val email = binding.editTextRegisterEmail.text.toString()
+        val password = binding.editTextRegisterPassword.text.toString()
+        val confirmPassword = binding.editTextRegisterConfirmPassword.text.toString()
+        if (
+            validateHelper.validateFirstName(firstName) &&
+            validateHelper.validateLastName(lastName) &&
+            validateHelper.validateEmail(email) &&
+            validateHelper.validatePassword(password) &&
+            validateHelper.validateConfirmPassword(password, confirmPassword)
+        ) {
+            registerViewModel.register(firstName, lastName, email, password)
         }
     }
 
