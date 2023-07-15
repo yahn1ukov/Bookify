@@ -14,7 +14,7 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    private var _uiState = MutableLiveData<Result<Nothing>>()
+    private var _uiState = MutableLiveData<Result<Nothing>>(Result.Idle)
     val uiState: LiveData<Result<Nothing>> = _uiState
 
     fun register(firstName: String, lastName: String, email: String, password: String) {

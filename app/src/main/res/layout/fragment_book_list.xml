@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="12dp"
+            android:paddingBottom="12dp"
             tools:listitem="@layout/book_list_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

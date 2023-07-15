@@ -84,6 +84,8 @@ class BookListFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
+
+            Result.Idle -> {}
         }
     }
 

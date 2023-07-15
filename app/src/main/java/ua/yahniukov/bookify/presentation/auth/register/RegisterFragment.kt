@@ -41,34 +41,6 @@ class RegisterFragment : Fragment() {
         binding.buttonCreateAccount.setOnClickListener { register() }
     }
 
-    private fun handleUIState(state: Result<Nothing>) {
-        when (state) {
-            is Result.Success -> {
-                hideLoading()
-                navigate(requireActivity(), HomeActivity::class.java)
-            }
-
-            is Result.Error -> {
-                hideLoading()
-                showToast(state.exception.message.toString())
-            }
-
-            Result.Loading -> {
-                showLoading()
-            }
-        }
-    }
-
-    private fun showLoading() {
-        binding.textNewAccount.hide()
-        binding.progressBarRegister.show()
-    }
-
-    private fun hideLoading() {
-        binding.progressBarRegister.hide()
-        binding.textNewAccount.show()
-    }
-
     private fun register() {
         val firstName = binding.editTextRegisterFirstName.text.toString()
         val lastName = binding.editTextRegisterLastName.text.toString()
@@ -84,6 +56,36 @@ class RegisterFragment : Fragment() {
         ) {
             registerViewModel.register(firstName, lastName, email, password)
         }
+    }
+
+    private fun handleUIState(state: Result<Nothing>) {
+        when (state) {
+            is Result.Success -> {
+                hideLoading()
+                navigate(requireActivity(), HomeActivity::class.java)
+            }
+
+            is Result.Error -> {
+                hideLoading()
+                showToast(state.exception.message.toString())
+            }
+
+            Result.Loading -> {
+                showLoading()
+            }
+            
+            Result.Idle -> {}
+        }
+    }
+
+    private fun showLoading() {
+        binding.textNewAccount.hide()
+        binding.progressBarRegister.show()
+    }
+
+    private fun hideLoading() {
+        binding.progressBarRegister.hide()
+        binding.textNewAccount.show()
     }
 
     override fun onDestroyView() {

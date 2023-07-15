@@ -81,40 +81,6 @@ class AddFragment : Fragment() {
             }
     }
 
-    private fun handleUIState(state: Result<Nothing>) {
-        when (state) {
-            is Result.Success -> {
-                hideLoading()
-                resetForm()
-                showToast("Post has been successfully created")
-            }
-
-            is Result.Error -> {
-                hideLoading()
-                showToast(state.exception.message.toString())
-            }
-
-            Result.Loading -> {
-                showLoading()
-            }
-        }
-    }
-
-    private fun showLoading() {
-        binding.progressBarAdd.show()
-    }
-
-    private fun hideLoading() {
-        binding.progressBarAdd.hide()
-    }
-
-    private fun resetForm() {
-        binding.imageAddUpload.setImageResource(R.drawable.ic_image)
-        binding.editTextAddName.setText("")
-        binding.editTextAddAuthor.setText("")
-        binding.editTextAddDescription.setText("")
-    }
-
     private fun uploadImage() {
         imagePickerLauncher.launch("image/**")
     }
@@ -133,8 +99,45 @@ class AddFragment : Fragment() {
         }
     }
 
+    private fun handleUIState(state: Result<Nothing>) {
+        when (state) {
+            is Result.Success -> {
+                hideLoading()
+                resetForm()
+                showToast("Post has been successfully created")
+            }
+
+            is Result.Error -> {
+                hideLoading()
+                showToast(state.exception.message.toString())
+            }
+
+            Result.Loading -> {
+                showLoading()
+            }
+
+            Result.Idle -> {}
+        }
+    }
+
+    private fun showLoading() {
+        binding.progressBarAdd.show()
+    }
+
+    private fun hideLoading() {
+        binding.progressBarAdd.hide()
+    }
+
+    private fun resetForm() {
+        binding.imageAddUpload.setImageResource(R.drawable.ic_image)
+        binding.editTextAddName.setText("")
+        binding.editTextAddAuthor.setText("")
+        binding.editTextAddDescription.setText("")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        addViewModel.restoreUIState()
         _binding = null
     }
 }

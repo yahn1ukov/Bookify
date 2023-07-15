@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/bookFragment"
         android:name="ua.yahniukov.bookify.presentation.home.book.BookFragment"
-        android:label="fragment_book"
+        android:label="@string/text_book"
         tools:layout="@layout/fragment_book">
         <action
             android:id="@+id/action_bookFragment_to_bookListFragment"

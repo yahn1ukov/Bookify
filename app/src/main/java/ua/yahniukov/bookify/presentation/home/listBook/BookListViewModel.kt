@@ -15,7 +15,7 @@ import javax.inject.Inject
 class BookListViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ) : ViewModel() {
-    private var _uiState = MutableLiveData<Result<List<Book>>>()
+    private var _uiState = MutableLiveData<Result<List<Book>>>(Result.Idle)
     val uiState: LiveData<Result<List<Book>>> = _uiState
 
     init {

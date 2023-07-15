@@ -49,6 +49,14 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun login() {
+        val email = binding.editTextLoginEmail.text.toString()
+        val password = binding.editTextLoginPassword.text.toString()
+        if (validateHelper.validateEmail(email) && validateHelper.validatePassword(password)) {
+            loginViewModel.login(email, password)
+        }
+    }
+
     private fun handleUIState(state: Result<Nothing>) {
         when (state) {
             is Result.Success -> {
@@ -64,6 +72,8 @@ class LoginFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
+            
+            Result.Idle -> {}
         }
     }
 
@@ -75,14 +85,6 @@ class LoginFragment : Fragment() {
     private fun hideLoading() {
         binding.progressBarLogin.hide()
         binding.textLogo.show()
-    }
-
-    private fun login() {
-        val email = binding.editTextLoginEmail.text.toString()
-        val password = binding.editTextLoginPassword.text.toString()
-        if (validateHelper.validateEmail(email) && validateHelper.validatePassword(password)) {
-            loginViewModel.login(email, password)
-        }
     }
 
     override fun onDestroyView() {

@@ -16,7 +16,7 @@ class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     userRepository: UserRepository
 ) : ViewModel() {
-    private var _uiState = MutableLiveData<Result<Nothing>>()
+    private var _uiState = MutableLiveData<Result<Nothing>>(Result.Idle)
     val uiState: LiveData<Result<Nothing>> = _uiState
 
     init {

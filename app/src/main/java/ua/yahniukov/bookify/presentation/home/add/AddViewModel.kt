@@ -15,7 +15,7 @@ import javax.inject.Inject
 class AddViewModel @Inject constructor(
     private val bookRepository: BookRepository
 ) : ViewModel() {
-    private var _uiState = MutableLiveData<Result<Nothing>>()
+    private var _uiState = MutableLiveData<Result<Nothing>>(Result.Idle)
     val uiState: LiveData<Result<Nothing>> = _uiState
 
     fun create(image: Uri, name: String, author: String, description: String) {
@@ -23,5 +23,9 @@ class AddViewModel @Inject constructor(
             _uiState.value = Result.Loading
             _uiState.value = bookRepository.create(image, name, author, description)
         }
+    }
+
+    fun restoreUIState() {
+        _uiState.value = Result.Idle
     }
 }
