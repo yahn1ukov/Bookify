@@ -1,4 +1,4 @@
-package ua.yahniukov.bookify.data.repositories
+package ua.yahniukov.bookify.domain.repositories
 
 import com.google.firebase.auth.FirebaseUser
 

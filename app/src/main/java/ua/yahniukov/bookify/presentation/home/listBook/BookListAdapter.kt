@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import ua.yahniukov.bookify.data.models.entities.Book
 import ua.yahniukov.bookify.databinding.BookListItemBinding
+import ua.yahniukov.bookify.domain.models.Book
 import ua.yahniukov.bookify.utils.ListDiff
 
 class BookListAdapter : RecyclerView.Adapter<BookListAdapter.BookListViewHolder>() {

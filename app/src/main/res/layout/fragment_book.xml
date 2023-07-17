@@ -7,7 +7,7 @@
 
         <variable
             name="book"
-            type="ua.yahniukov.bookify.data.models.entities.Book" />
+            type="ua.yahniukov.bookify.domain.models.Book" />
     </data>
 
     <ScrollView

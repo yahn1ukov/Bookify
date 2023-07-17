@@ -7,12 +7,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ua.yahniukov.bookify.data.repositories.AuthRepository
-import ua.yahniukov.bookify.data.repositories.BookRepository
-import ua.yahniukov.bookify.data.repositories.UserRepository
-import ua.yahniukov.bookify.data.repositories.impl.AuthRepositoryImpl
-import ua.yahniukov.bookify.data.repositories.impl.BookRepositoryImpl
-import ua.yahniukov.bookify.data.repositories.impl.UserRepositoryImpl
+import ua.yahniukov.bookify.domain.repositories.AuthRepository
+import ua.yahniukov.bookify.domain.repositories.BookRepository
+import ua.yahniukov.bookify.domain.repositories.UserRepository
+import ua.yahniukov.bookify.data.repositories.AuthRepositoryImpl
+import ua.yahniukov.bookify.data.repositories.BookRepositoryImpl
+import ua.yahniukov.bookify.data.repositories.UserRepositoryImpl
 
 @Module
 @InstallIn(SingletonComponent::class)

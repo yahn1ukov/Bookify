@@ -1,8 +1,8 @@
-package ua.yahniukov.bookify.data.repositories.impl
+package ua.yahniukov.bookify.data.repositories
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import ua.yahniukov.bookify.data.repositories.UserRepository
+import ua.yahniukov.bookify.domain.repositories.UserRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -7,7 +7,7 @@
 
         <variable
             name="book"
-            type="ua.yahniukov.bookify.data.models.entities.Book" />
+            type="ua.yahniukov.bookify.domain.models.Book" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -22,10 +22,9 @@
 
             <ImageView
                 android:id="@+id/image_book_item_thumbnail"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_width="130dp"
+                android:layout_height="160dp"
                 android:loadImage="@{book.imageUrl}"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -34,16 +33,16 @@
                 android:id="@+id/text_book_item_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:lines="2"
+                android:maxLines="3"
                 android:text="@{book.name}"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/image_book_item_thumbnail"
-                app:layout_constraintStart_toStartOf="@+id/image_book_item_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/image_book_item_thumbnail" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_book_item_thumbnail"
+                app:layout_constraintTop_toTopOf="@+id/image_book_item_thumbnail" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_book_item_author"

@@ -21,6 +21,15 @@
             android:paddingBottom="16dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_delete_all_books"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_delete_all_books"
+                android:textColor="@color/red"
+                app:strokeColor="@color/red" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_log_out"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"

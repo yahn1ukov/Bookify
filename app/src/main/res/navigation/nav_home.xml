@@ -51,6 +51,6 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="book"
-            app:argType="ua.yahniukov.bookify.data.models.entities.Book" />
+            app:argType="ua.yahniukov.bookify.domain.models.Book" />
     </fragment>
 </navigation>

@@ -2,14 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search"
-        android:title="@string/text_search"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-    <item
-        android:id="@+id/filter"
-        android:title="@string/text_filter"
-        android:icon="@drawable/ic_filter"
+        android:id="@+id/remove"
+        android:title="@string/text_remove"
+        android:icon="@drawable/ic_bin"
         app:showAsAction="ifRoom" />
 </menu>

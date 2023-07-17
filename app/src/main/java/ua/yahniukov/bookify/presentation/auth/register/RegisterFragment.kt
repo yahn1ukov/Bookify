@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentRegisterBinding
 import ua.yahniukov.bookify.presentation.home.HomeActivity
 import ua.yahniukov.bookify.utils.Result
@@ -37,6 +39,9 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         registerViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
+        }
+        binding.toolbarRegister.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
         binding.buttonCreateAccount.setOnClickListener { register() }
     }
@@ -73,7 +78,7 @@ class RegisterFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
-            
+
             Result.Idle -> {}
         }
     }

@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ua.yahniukov.bookify.R
-import ua.yahniukov.bookify.data.models.entities.Book
 import ua.yahniukov.bookify.databinding.FragmentBookListBinding
+import ua.yahniukov.bookify.domain.models.Book
 import ua.yahniukov.bookify.utils.Result
 import ua.yahniukov.bookify.utils.showToast
 
@@ -54,7 +54,7 @@ class BookListFragment : Fragment() {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.toolbar_menu_book, menu)
+                menuInflater.inflate(R.menu.toolbar_menu_book_list, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

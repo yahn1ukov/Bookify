@@ -31,4 +31,6 @@
     <string name="text_email">Email</string>
     <string name="text_author">Author</string>
     <string name="text_description">Description</string>
+    <string name="text_remove">Remove</string>
+    <string name="text_delete_all_books">Delete all books</string>
 </resources>

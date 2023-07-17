@@ -38,6 +38,9 @@ class ResetPasswordFragment : Fragment() {
         resetPasswordViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
         }
+        binding.toolbarResetPassword.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+        }
         binding.buttonResetPassword.setOnClickListener { resetPassword() }
     }
 
@@ -63,7 +66,7 @@ class ResetPasswordFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
-            
+
             Result.Idle -> {}
         }
     }
