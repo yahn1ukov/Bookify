@@ -94,27 +94,6 @@
             app:layout_constraintStart_toStartOf="@+id/button_log_in"
             app:layout_constraintTop_toBottomOf="@+id/button_log_in" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider_login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_forgot_password" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_log_in_google"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/text_google"
-            app:icon="@drawable/ic_google"
-            app:layout_constraintEnd_toEndOf="@+id/divider_login"
-            app:layout_constraintStart_toStartOf="@+id/divider_login"
-            app:layout_constraintTop_toBottomOf="@+id/divider_login" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_new_account"
             style="@style/Widget.Material3.Button.OutlinedButton"

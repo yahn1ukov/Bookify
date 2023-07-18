@@ -14,7 +14,6 @@ import ua.yahniukov.bookify.domain.usecases.auth.RegisterUseCase
 import ua.yahniukov.bookify.domain.usecases.auth.ResetPasswordUseCase
 import ua.yahniukov.bookify.domain.usecases.book.BookUseCase
 import ua.yahniukov.bookify.domain.usecases.book.CreateBookUseCase
-import ua.yahniukov.bookify.domain.usecases.book.DeleteAllBooksUseCase
 import ua.yahniukov.bookify.domain.usecases.book.DeleteBookUseCase
 import ua.yahniukov.bookify.domain.usecases.book.GetAllBooksUseCase
 import ua.yahniukov.bookify.domain.usecases.user.GetCurrentUserUseCase
@@ -51,8 +50,7 @@ object UseCaseModule {
         return BookUseCase(
             GetAllBooksUseCase(bookRepository),
             CreateBookUseCase(bookRepository),
-            DeleteBookUseCase(bookRepository),
-            DeleteAllBooksUseCase(bookRepository)
+            DeleteBookUseCase(bookRepository)
         )
     }
 }

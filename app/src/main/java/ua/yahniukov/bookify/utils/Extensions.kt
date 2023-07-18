@@ -9,12 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
 
-fun DataSnapshot.removeAll() {
-    for (snapshot in this.children) {
-        snapshot.ref.removeValue()
-    }
-}
-
 inline fun <reified T> DataSnapshot.toList(): List<T> {
     val list = mutableListOf<T>()
     for (snapshot in this.children) {

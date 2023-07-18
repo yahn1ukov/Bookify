@@ -11,6 +11,7 @@ object DataBindingAdapter {
     fun loadImage(imageView: ImageView, imageUrl: String?) {
         if (imageUrl != null) {
             imageView.load(imageUrl) {
+                crossfade(200)
                 error(R.drawable.ic_image)
             }
         }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.tasks.await
 import ua.yahniukov.bookify.data.models.entities.BookEntity
 import ua.yahniukov.bookify.domain.repositories.BookRepository
 import ua.yahniukov.bookify.domain.repositories.UserRepository
-import ua.yahniukov.bookify.utils.removeAll
+import ua.yahniukov.bookify.utils.Constants.TABLE_BOOKS
 import ua.yahniukov.bookify.utils.toList
 import java.util.UUID
 import javax.inject.Inject
@@ -26,11 +26,11 @@ class BookRepositoryImpl @Inject constructor(
         description: String
     ) {
         val imageUrl = pushImageToStorage(image)
-        val bookDBRef = db.reference.child("Books")
+        val bookDBRef = db.reference.child(TABLE_BOOKS)
         val bookUID = bookDBRef.push().key!!
         val ownerUID = userRepository.currentUser!!.uid
         val bookEntity = BookEntity(bookUID, imageUrl, name, author, description)
-        bookDBRef.child(ownerUID).child(bookUID).setValue(bookEntity)
+        bookDBRef.child(ownerUID).child(bookUID).setValue(bookEntity).await()
     }
 
     private suspend fun pushImageToStorage(image: Uri): String {
@@ -42,21 +42,14 @@ class BookRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getAll(): List<BookEntity> {
-        val bookDBRef = db.reference.child("Books")
+        val bookDBRef = db.reference.child(TABLE_BOOKS)
         val ownerUID = userRepository.currentUser!!.uid
-        return bookDBRef.child(ownerUID).get().await().toList<BookEntity>()
+        return bookDBRef.child(ownerUID).get().await().toList()
     }
 
     override suspend fun delete(bookUID: String) {
-        val bookDBRef = db.reference.child("Books")
+        val bookDBRef = db.reference.child(TABLE_BOOKS)
         val ownerUID = userRepository.currentUser!!.uid
-        bookDBRef.child(ownerUID).child(bookUID).removeValue()
-    }
-
-    override suspend fun deleteAll() {
-        val bookDBRef = db.reference.child("Books")
-        val ownerUID = userRepository.currentUser!!.uid
-        val books = bookDBRef.child(ownerUID).get().await()
-        books.removeAll()
+        bookDBRef.child(ownerUID).child(bookUID).removeValue().await()
     }
 }

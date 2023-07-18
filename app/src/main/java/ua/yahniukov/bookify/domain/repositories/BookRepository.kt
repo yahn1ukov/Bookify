@@ -13,5 +13,4 @@ interface BookRepository {
 
     suspend fun getAll(): List<BookEntity>
     suspend fun delete(bookUID: String)
-    suspend fun deleteAll()
 }

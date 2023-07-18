@@ -2,20 +2,13 @@ package ua.yahniukov.bookify.presentation.home.listBook
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import ua.yahniukov.bookify.R
 import ua.yahniukov.bookify.databinding.FragmentBookListBinding
 import ua.yahniukov.bookify.domain.models.Book
 import ua.yahniukov.bookify.utils.Result
@@ -40,7 +33,6 @@ class BookListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbarMenu()
         setupRecyclerView()
         bookListViewModel.uiState.observe(viewLifecycleOwner) { state ->
             handleUIState(state)
@@ -48,19 +40,6 @@ class BookListFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             bookListViewModel.getAll()
         }
-    }
-
-    private fun setupToolbarMenu() {
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.toolbar_menu_book_list, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return true
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupRecyclerView() {

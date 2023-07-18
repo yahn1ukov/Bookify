@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    def firebase_auth_version = "22.0.0"
+    def firebase_auth_version = "22.1.0"
     implementation "com.google.firebase:firebase-auth-ktx:$firebase_auth_version"
 
     def firebase_storage_version = "20.2.1"
@@ -61,18 +61,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
-    def data_store_version = "1.0.0"
-    implementation "androidx.datastore:datastore-preferences:$data_store_version"
-
     def dagger_hilt_version = "2.44"
     implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_hilt_version"
 
     def coil_version = "2.4.0"
     implementation "io.coil-kt:coil:$coil_version"
-
-    def shimmer_version = "0.5.0"
-    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 
     def swipe_refresh_layout_version = "1.1.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"

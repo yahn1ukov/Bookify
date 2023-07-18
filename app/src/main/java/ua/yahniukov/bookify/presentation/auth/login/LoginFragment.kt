@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
             Result.Loading -> {
                 showLoading()
             }
-            
+
             Result.Idle -> {}
         }
     }
